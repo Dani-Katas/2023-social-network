@@ -10,7 +10,7 @@ describe("SocialNetwork", () => {
     const inMemoryUserRepository = new InMemoryUserRepository()
     const socialNetwork = new SocialNetwork(
       new RegisterUserUseCase(inMemoryUserRepository),
-      new PostMessageUseCase(),
+      new PostMessageUseCase(inMemoryUserRepository),
       new ReadTimelineUseCase(),
     )
 
