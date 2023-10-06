@@ -1,19 +1,23 @@
-import { describe, it, expect } from "vitest";
-import { SocialNetwork } from "./SocialNetwork.js";
+import { describe, it, expect } from "vitest"
+import { SocialNetwork } from "./SocialNetwork.js"
+import { RegisterUserUseCase } from "./RegisterUserUseCase.js"
+import { PostMessageUseCase } from "./PostMessageUseCase.js"
+import { ReadTimelineUseCase } from "./ReadTimelineUseCase.js"
 
 describe("SocialNetwork", () => {
   it("users can posts messages and read timelines", () => {
-    const socialNetwork = new SocialNetwork()
+    const socialNetwork = new SocialNetwork(
+      new RegisterUserUseCase(),
+      new PostMessageUseCase(),
+      new ReadTimelineUseCase(),
+    )
 
     socialNetwork.registerUser("johndoe")
     socialNetwork.postMessage("johndoe", "this is my first post")
     socialNetwork.postMessage("johndoe", "this is my second post")
 
-    const posts = socialNetwork.readTimeline("johndoe");
+    const posts = socialNetwork.readTimeline("johndoe")
 
-    expect(posts).toEqual([
-      "this is my second post",
-      "this is my first post",
-    ])
+    expect(posts).toEqual(["this is my second post", "this is my first post"])
   })
 })
