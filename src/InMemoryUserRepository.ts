@@ -11,4 +11,11 @@ export class InMemoryUserRepository {
   save(user: User) {
     this.users.push(user)
   }
+  fetch(username: string) {
+    for (const user of this.users) {
+      if (user.hasUsername(username)) {
+        return user
+      }
+    }
+  }
 }

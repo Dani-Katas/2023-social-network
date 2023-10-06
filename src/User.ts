@@ -7,4 +7,7 @@ export class User {
   hasUsername(username: string) {
     return this.username === username
   }
+  getMessages() {
+    return []
+  }
 }
