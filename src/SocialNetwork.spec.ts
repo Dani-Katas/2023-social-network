@@ -3,11 +3,13 @@ import { SocialNetwork } from "./SocialNetwork.js"
 import { RegisterUserUseCase } from "./RegisterUserUseCase.js"
 import { PostMessageUseCase } from "./PostMessageUseCase.js"
 import { ReadTimelineUseCase } from "./ReadTimelineUseCase.js"
+import { InMemoryUserRepository } from "./InMemoryUserRepository.js"
 
 describe("SocialNetwork", () => {
   it("users can posts messages and read timelines", () => {
+    const inMemoryUserRepository = new InMemoryUserRepository()
     const socialNetwork = new SocialNetwork(
-      new RegisterUserUseCase(),
+      new RegisterUserUseCase(inMemoryUserRepository),
       new PostMessageUseCase(),
       new ReadTimelineUseCase(),
     )
