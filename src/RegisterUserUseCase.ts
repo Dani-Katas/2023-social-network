@@ -1,4 +1,5 @@
 import { InMemoryUserRepository } from "./InMemoryUserRepository.js";
+import { User } from "./User.js";
 
 export class RegisterUserUseCase {
   private userRepository: InMemoryUserRepository;
@@ -6,6 +7,6 @@ export class RegisterUserUseCase {
     this.userRepository = userRepository;
   }
   execute(username: string) {
-    throw new Error("Unimplemented method RegisterUserUseCase#execute");
+    this.userRepository.save(new User(username));
   }
 }
