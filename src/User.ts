@@ -4,7 +4,7 @@ export class User {
     this.username = username
   }
 
-  getUsername() {
-    return this.username
+  hasUsername(username: string) {
+    return this.username === username
   }
 }
